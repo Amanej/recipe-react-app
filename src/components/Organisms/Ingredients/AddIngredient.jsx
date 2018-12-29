@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components'
-//import Suggestion from './../../Atoms/Suggestion.jsx'
+import BasicHeader from './../../Atoms/Headers/BasicHeader.jsx'
 import Suggestions from './../../Molecules/Suggestions.jsx'
 
 const AddIngredientHolder = styled.div`
@@ -28,7 +28,6 @@ const AmountHolder = styled.div`
 `
 
 
-
 class AddIngredient extends React.Component {
     state = {
         searchActive: 'none', //true,
@@ -46,9 +45,6 @@ class AddIngredient extends React.Component {
             height: '0'
         })
     }
-
-    // onClick={this.props.addIngredient(this.state.selectedIngredient, this.state.amount)}
-
     
     render () {
         //console.log(this.props);
@@ -88,7 +84,8 @@ class AddIngredient extends React.Component {
                     />
                 </SearchContainer>
                 <AmountHolder>
-                    <p>Selected ingredient: {this.state.selectedIngredient && this.state.selectedIngredient.name}</p>
+                    <BasicHeader header={'Selected ingredient'} />
+                    <p>{this.state.selectedIngredient && this.state.selectedIngredient.name}</p>
                     <p>Unit: {this.state.selectedIngredient && this.state.selectedIngredient.unit}</p>
                     <input 
                         type="text" 

@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Recipe App",
+  "name": "Recipe App - Find ingredients by what is in your kitchen",
   "icons": [
     {
       "src": "favicon.ico",

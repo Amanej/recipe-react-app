@@ -4,6 +4,8 @@ import './App.css';
 import Recipes from './components/Organisms/Recipes/Recipes.jsx'
 import AddIngredient from './components/Organisms/Ingredients/AddIngredient.jsx'
 import MyIngredients from './components/Organisms/Ingredients/MyIngredients.jsx'
+import Header from './components/Molecules/Header.jsx'
+
 
 class App extends Component {
   state = {
@@ -78,9 +80,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="header">
-          <h2>Recipe App</h2>
-        </div>
+        <Header />
         <AddIngredient ingredients={this.state.ingredients} addIngredient={this.addIngredient} />
         <MyIngredients myIngredients={this.state.myIngredients} />
         <Recipes recipes={this.state.recipes} myIngredients={this.state.myIngredients} />

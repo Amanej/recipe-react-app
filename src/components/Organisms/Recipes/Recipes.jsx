@@ -2,20 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import Recipe from './Recipe.jsx'
 
+import BasicHeader from './../../Atoms/Headers/BasicHeader.jsx'
+
 const RecipesContainer = styled.div`
     width: 80%;
     text-align: left;
     margin-left: 10%;
 `
 
-const RecipesContainerTitle = styled.h3`
-    border-bottom: 1px solid;
-`
-
 const Recipes = (props) => {
     return (
         <RecipesContainer>
-            <RecipesContainerTitle>Recipes</RecipesContainerTitle>
+            <BasicHeader header={'Recipes'} />
             {props.recipes.map((r,i) => {
                 return (
                     <Recipe key={i} recipe={r} myIngredients={props.myIngredients} />

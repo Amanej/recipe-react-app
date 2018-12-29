@@ -12,7 +12,7 @@ class Recipe extends React.Component {
             }
             return counter
         });
-        console.log("Counter ",counter);
+        //console.log("Counter ",counter);
         return counter //recipeIngredients.length
     }
 
