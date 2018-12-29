@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
-import Suggestion from './../../Atoms/Suggestion.jsx'
+//import Suggestion from './../../Atoms/Suggestion.jsx'
+import Suggestions from './../../Molecules/Suggestions.jsx'
 
 const AddIngredientHolder = styled.div`
     text-align: left;
@@ -19,19 +20,6 @@ const SearchInput = styled.input`
     border: none;
 `
 
-const Suggestions = styled.div`
-    width: 100%;
-    margin: auto;
-    font-size: 16px;
-    padding: 5px;
-    border-none;
-    position: absolute;
-    background: white;
-    max-height: 200px;
-    overflow: hidden;
-    overflow-y: scroll;
-`
-
 const AmountHolder = styled.div`
     width: 80%;
     margin: auto;
@@ -43,7 +31,27 @@ const AmountHolder = styled.div`
 
 class AddIngredient extends React.Component {
     state = {
-        searchActive: false
+        searchActive: 'none', //true,
+        height: '0', //true,
+        selectedIngredient: null,
+        amount: 0
+    }
+
+    selectIngredient = (v) => {
+        console.log(v);
+        console.log(this.state.searchActive)
+        this.setState({
+            selectedIngredient: v,
+            searchActive: 'none',
+            height: '0'
+        })
+    }
+
+    addIngredient = () => {
+        console.log(this.state.selectedIngredient);
+        let selectedIngredient = this.state.selectedIngredient;
+        selectedIngredient.amount = this.state.amount;
+        console.log("Add ingredient to myIngredients ",selectedIngredient);
     }
 
     render () {
@@ -56,6 +64,7 @@ class AddIngredient extends React.Component {
                             if(e.keyCode === 13) {
                                 console.log(e.target.value);
                                 // Add to state
+                                    this.selectIngredient(e.target.value)
                                     // Clear input
                             } else {
                                 // organize suggestions by match with query
@@ -63,25 +72,39 @@ class AddIngredient extends React.Component {
                         }}
                         onFocus={e => {
                             this.setState({
-                                searchActive: true
+                                searchActive: 'block', //true
+                                height: '200px'
                             })
                         }} 
                         onBlur={e => {
                             this.setState({
-                                searchActive: false
+                                searchActive: 'none', //false
+                                height: '0'
                             })
-                        }} />
-                    {this.state.searchActive &&                
-                        <Suggestions>
-                            {this.props.ingredients.map((ingredient,i) => {
-                                return <Suggestion ingredient={ingredient} key={i} />
-                            })}
-                        </Suggestions>
-                    }
+                        }} 
+                    />
+                    <Suggestions
+                        height={this.state.height}
+                        show={this.state.searchActive}
+                        ingredients={this.props.ingredients}
+                        selectIngredient={this.selectIngredient}
+                    />
                 </SearchContainer>
                 <AmountHolder>
-                    <input type="text" name="amount" className="amount" placeholder="Set amount" />
-                    <button className="add">Add ingredient</button>
+                    <p>Selected ingredient: {this.state.selectedIngredient && this.state.selectedIngredient.name}</p>
+                    <p>Unit: {this.state.selectedIngredient && this.state.selectedIngredient.unit}</p>
+                    <input 
+                        type="text" 
+                        name="amount" 
+                        className="amount" 
+                        placeholder="Set amount" 
+                        onChange={e => {
+                            this.setState({
+                                amount: e.target.value
+                            })
+                        }}
+                     />
+                    <button className="add" onClick={this.addIngredient}>Add ingredient</button>
                 </AmountHolder>
             </AddIngredientHolder>
         )
