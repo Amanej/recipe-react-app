@@ -12,8 +12,7 @@ const MyIngredients = (props) => {
             {props.myIngredients.map((mi,i) => {
                 return (
                     <div className="ingredient" key={i}>
-                        <p>{mi.name}</p>
-                        <p>Amount: {mi.amount} {mi.unit}</p>
+                        <p>{mi.name} || Amount: {mi.amount} {mi.unit}</p>
                     </div>
                 )
             })}

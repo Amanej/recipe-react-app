@@ -47,14 +47,11 @@ class AddIngredient extends React.Component {
         })
     }
 
-    addIngredient = () => {
-        console.log(this.state.selectedIngredient);
-        let selectedIngredient = this.state.selectedIngredient;
-        selectedIngredient.amount = this.state.amount;
-        console.log("Add ingredient to myIngredients ",selectedIngredient);
-    }
+    // onClick={this.props.addIngredient(this.state.selectedIngredient, this.state.amount)}
 
+    
     render () {
+        //console.log(this.props);
         return (
             <AddIngredientHolder>
                 <SearchContainer>
@@ -104,7 +101,12 @@ class AddIngredient extends React.Component {
                             })
                         }}
                      />
-                    <button className="add" onClick={this.addIngredient}>Add ingredient</button>
+                    <button 
+                        className="add" 
+                        onClick={() => {
+                            this.props.addIngredient(this.state.selectedIngredient, this.state.amount)
+                        }} 
+                    >Add ingredient</button>
                 </AmountHolder>
             </AddIngredientHolder>
         )

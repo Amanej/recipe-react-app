@@ -9,7 +9,7 @@ const SuggestionBtn = styled.span`
 `
 
 const suggestion = (props) => {
-    console.log(props)
+    //console.log(props)
     return (
         <SuggestionBtn
             onClick={e => {

@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Suggestion from './../Atoms/Suggestion.jsx'
 
 const SuggestionContainer = (props) => {
-    console.log(props.show);
     return (
         <Suggestions style={
             {
@@ -30,7 +29,6 @@ const Suggestions = styled.div`
     margin: auto;
     font-size: 16px;
     padding: 5px;
-    position: absolute;
     background: white;
     max-height: 200px;
     overflow: hidden;
@@ -41,7 +39,11 @@ const Suggestions = styled.div`
     border-right: 1px solid;
     border-color: #cecece;
     box-shadow: 4px 4px 6px #827e7e;
-    width: 80%;
 `
+
+/*
+    width: 80%;
+    position: absolute;
+*/
 
 export default SuggestionContainer

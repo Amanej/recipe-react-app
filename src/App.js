@@ -64,13 +64,24 @@ class App extends Component {
       }
     ]
   }
+
+  addIngredient = (selectedIngredient,amount) => {
+    console.log('AddIngredient ',selectedIngredient,amount);
+    //let selectedIngredient = this.state.selectedIngredient;
+    selectedIngredient.amount = amount;
+    //console.log("Add ingredient to myIngredients ",selectedIngredient);
+    this.setState(prevState => ({
+      myIngredients: [...prevState.myIngredients, selectedIngredient]
+    }))
+  }
+
   render() {
     return (
       <div className="App">
         <div className="header">
           <h2>Recipe App</h2>
         </div>
-        <AddIngredient ingredients={this.state.ingredients} />
+        <AddIngredient ingredients={this.state.ingredients} addIngredient={this.addIngredient} />
         <MyIngredients myIngredients={this.state.myIngredients} />
         <Recipes recipes={this.state.recipes} />
       </div>
