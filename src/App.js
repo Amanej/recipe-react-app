@@ -10,15 +10,15 @@ class App extends Component {
     recipes: [
       {
         title: "Pancakes",
-        ingredients: ['milk','eggs','butter']
+        ingredients: ['milk','eggs','butter','flour']
       },
       {
-        title: "Pancakes",
-        ingredients: ['milk','eggs','butter']
+        title: "Apple Pie",
+        ingredients: ['milk','eggs','butter','flour','apple','sugar']
       },
       {
-        title: "Pancakes",
-        ingredients: ['milk','eggs','butter']
+        title: "Omelettes",
+        ingredients: ['eggs','milk','butter']
       }
     ],
     ingredients: [
@@ -83,7 +83,7 @@ class App extends Component {
         </div>
         <AddIngredient ingredients={this.state.ingredients} addIngredient={this.addIngredient} />
         <MyIngredients myIngredients={this.state.myIngredients} />
-        <Recipes recipes={this.state.recipes} />
+        <Recipes recipes={this.state.recipes} myIngredients={this.state.myIngredients} />
       </div>
     );
   }
