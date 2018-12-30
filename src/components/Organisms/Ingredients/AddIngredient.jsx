@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components'
 import BasicHeader from './../../Atoms/Headers/BasicHeader.jsx'
 import Suggestions from './../../Molecules/Suggestions.jsx'
+import SelectedIngredient from '../../Molecules/SelectedIngredients.jsx';
 
 const AddIngredientHolder = styled.div`
     text-align: left;
@@ -27,12 +28,14 @@ const AmountHolder = styled.div`
     padding: 5px;
 `
 
-
 class AddIngredient extends React.Component {
     state = {
         searchActive: 'none', //true,
         height: '0', //true,
-        selectedIngredient: null,
+        selectedIngredient: {
+            name: "Apple",
+            unit: "pieces"
+        },
         amount: 0
     }
 
@@ -45,6 +48,12 @@ class AddIngredient extends React.Component {
             height: '0'
         })
     }
+
+    setAmount = (v) => {
+        this.setState({
+            amount: v
+        })
+    };
     
     render () {
         //console.log(this.props);
@@ -85,25 +94,16 @@ class AddIngredient extends React.Component {
                 </SearchContainer>
                 <AmountHolder>
                     <BasicHeader header={'Selected ingredient'} />
-                    <p>{this.state.selectedIngredient && this.state.selectedIngredient.name}</p>
-                    <p>Unit: {this.state.selectedIngredient && this.state.selectedIngredient.unit}</p>
-                    <input 
-                        type="text" 
-                        name="amount" 
-                        className="amount" 
-                        placeholder="Set amount" 
-                        onChange={e => {
-                            this.setState({
-                                amount: e.target.value
-                            })
-                        }}
-                     />
-                    <button 
-                        className="add" 
-                        onClick={() => {
-                            this.props.addIngredient(this.state.selectedIngredient, this.state.amount)
-                        }} 
-                    >Add ingredient</button>
+                    {!this.state.selectedIngredient &&
+                        <p>No ingredient selected</p>
+                    }
+                    {this.state.selectedIngredient &&
+                        <SelectedIngredient 
+                            selectedIngredient={this.state.selectedIngredient}
+                            setAmount={this.setAmount}
+                            addIngredient={this.props.addIngredient}
+                        />
+                    }
                 </AmountHolder>
             </AddIngredientHolder>
         )
